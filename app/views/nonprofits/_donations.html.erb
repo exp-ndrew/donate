@@ -1,0 +1,13 @@
+<table class="table-striped table">
+<thead>
+  <td>Donor</td>
+  <td>Donation</td>
+  <td></td>
+</thead>
+  <% @nonprofit.donations.each do |donation| %>
+    <tr>
+      <td><%= donation.from %></td>
+      <td>$<%= donation.amount %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,4 @@
+<h1><%= @nonprofit.name %></h1>
+<%= link_to "Donate!", new_nonprofit_donation_path(@nonprofit), :class => "btn btn-success" %>
+
+<%= render 'donations' %>

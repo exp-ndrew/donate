@@ -18,6 +18,10 @@ class NonprofitsController < ApplicationController
     end
   end
 
+  def show
+    @nonprofit = Nonprofit.find(params[:id])
+  end
+
 
 private
 

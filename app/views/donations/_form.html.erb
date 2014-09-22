@@ -1,0 +1,11 @@
+<div class="form-group">
+<%= form_for [@nonprofit, @donation] do |f| %>
+<%= f.label :from %>
+<%= f.text_field :from, :class => "form-control" %>
+<%= f.label :amount %>
+<%= f.text_field :amount, :class => "form-control" %>
+<%= f.hidden_field :nonprofit_id, :value => @nonprofit.id %>
+<br>
+<%= f.submit "Donate!", :class => "btn btn-success" %>
+<% end %>
+</div>

@@ -7,16 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <p class="home-link"><%= link_to "Home", root_path %> </p>
+
   <div class="container">
     <div class="notice">
       <%= flash[:notice] %>
     </div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-       <%= yield %>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <%= yield %>
     </div>
-    <div class="col-md-4"></div>
-  </div>
 </body>
 
 </html>

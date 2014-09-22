@@ -1,3 +1,18 @@
 <h1>Nonprofits</h1>
 
 <%= link_to "New Nonprofit", new_nonprofit_path %>
+
+<table class="table-striped table">
+<thead>
+  <td>Name</td>
+  <td>Total Raised</td>
+  <td></td>
+</thead>
+<% @nonprofits.each do |nonprofit| %>
+  <tr>
+    <td><%= link_to nonprofit.name, nonprofit_path(nonprofit) %></td>
+    <td>$<%= nonprofit.donations.sum(:amount) %></td>
+    <td><%= link_to "Donate!", new_nonprofit_donation_path(nonprofit), :class => "btn btn-success" %></td>
+  </tr>
+<% end %>
+</table>

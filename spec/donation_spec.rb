@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe Donation do
   it { should belong_to :nonprofit }
   it { should validate_presence_of :amount }
