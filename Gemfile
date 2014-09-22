@@ -7,6 +7,8 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
 
 group :development do
   gem 'better_errors'
