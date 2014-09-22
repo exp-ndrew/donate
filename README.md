@@ -11,6 +11,11 @@ An exercise that uses the Stripe API.
 1. Run `$ rails server`
 1. Go to [http://localhost:3000/](http://localhost:3000/) in a web browser to use the program.
 
+## Notepad
+
+* classes: nonprofit/company(name)
+, donation(to, from, how much)
+
 
 ## Meta
 
