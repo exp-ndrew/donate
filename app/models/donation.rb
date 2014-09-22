@@ -2,7 +2,7 @@ class Donation < ActiveRecord::Base
   belongs_to :nonprofit
   validates :amount, :presence => true
   validates :amount, :numericality => true
-  before_create :define_name
+  before_create :define_name, :charge_card
 
   def amount_format
     @counter = 6
@@ -18,6 +18,10 @@ class Donation < ActiveRecord::Base
 private
   def define_name
     self.from = "Anonymous" unless self.from?
+  end
+
+  def charge_card
+
   end
 
 end

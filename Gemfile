@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'stripe'
 
 group :development do
   gem 'better_errors'
