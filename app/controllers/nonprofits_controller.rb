@@ -19,5 +19,10 @@ class NonprofitsController < ApplicationController
   end
 
 
+private
+
+  def nonprofit_params
+    params.require(:nonprofit).permit(:name)
+  end
 
 end

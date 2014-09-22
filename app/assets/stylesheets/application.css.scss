@@ -12,10 +12,19 @@
  *
  *= require_tree .
  *= require_self
- //= require jquery
- //= require bootstrap-sprockets
  */
 
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+div {
+  border:2px solid #eee;
+  border-radius:10px;
+}
+
+.notice {
+  background-color: #060;
+  color: #fff;
+  text-align:center;
+}
