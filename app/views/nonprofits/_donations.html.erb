@@ -7,7 +7,7 @@
   <% @nonprofit.donations.each do |donation| %>
     <tr>
       <td><%= donation.from %></td>
-      <td>$<%= donation.amount %></td>
+      <td>$<%= donation.amount_format %></td>
     </tr>
   <% end %>
 </table>

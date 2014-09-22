@@ -9,7 +9,7 @@ class DonationsController < ApplicationController
     @nonprofit = Nonprofit.find(params[:nonprofit_id])
     @donation = Donation.new(donation_params)
     if @donation.save
-      flash[:notice] = "You have donated $#{@donation.amount} to #{@nonprofit.name}."
+      flash[:notice] = "You have donated $#{@donation.amount_format} to #{@nonprofit.name}."
       redirect_to nonprofit_path(@nonprofit)
     else
       render 'new'
