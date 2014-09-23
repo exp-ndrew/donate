@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140922213642) do
   enable_extension "plpgsql"
 
   create_table "donations", force: true do |t|
-    t.float   "amount"
+    t.decimal "amount"
     t.integer "nonprofit_id"
     t.string  "from"
   end

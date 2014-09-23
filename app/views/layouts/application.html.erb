@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript">
-
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey('pk_test_mc4A9R5jELEFeGPrhsoMPzKE');
+    // ...
   </script>
 </head>
 <body>
@@ -17,6 +19,9 @@
     <div class="notice">
       <%= flash[:notice] %>
     </div>
+    <div class="alert-div">
+      <%= flash[:alert] %>
+    </div>
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <%= yield %>
@@ -24,5 +29,4 @@
 </body>
 
 </html>
-
 

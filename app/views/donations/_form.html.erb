@@ -1,13 +1,98 @@
 <div class="form-group">
-<span class="payment-errors"></span>
-<%= form_for [@nonprofit, @donation], :id => "payment-form" do |f| %>
-<%= f.label :from %>
-<%= f.text_field :from, :class => "form-control" %>
-<%= f.label :amount %>
-<%= f.text_field :amount, :class => "form-control" %>
-<%= f.hidden_field :nonprofit_id, :value => @nonprofit.id %>
-<br>
-<%= f.submit "Donate!", :class => "btn btn-success" %>
-<% end %>
-</div>
+  <form action="/nonprofits/<%=@nonprofit.id%>/donations" method="POST" id="payment-form">
+    <div class="payment-errors">
+      <span class="payment-errors"></span>
+    </div>
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input name="donation[nonprofit_id]" value="<%= @nonprofit.id %>" type="hidden">
+    <label>
+      <span>From</span>
+    </label>
+    <input id="from" class="form-control" name="donation[from]" type="text" value="<%= @donation.from %>">
+    <label>
+      <span>Amount</span>
+    </label>
+    <input id="amount" class="form-control" name="donation[amount]" type="number" value="<%= @donation.amount %>">
+    <label>
+      <span>Card Number</span>
+    </label>
+    <input type="text" class="form-control" size="20" data-stripe="number"/>
 
+    <label>
+      <span>CVC</span>
+    </label>
+    <input type="text" class="form-control" size="4" data-stripe="cvc"/>
+
+    <label for="card_month">
+      <span>Card Expiration</span>
+    </label>
+    <select id="card_month" data-stripe="exp-month">
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+
+    <select id="card_year" data-stripe="exp-year">
+      <option value="2014">2014</option>
+      <option value="2015">2015</option>
+      <option value="2016">2016</option>
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+      <option value="2027">2027</option>
+      <option value="2028">2028</option>
+      <option value="2029">2029</option>
+    </select>
+    <br>
+    <button type="submit" class="btn btn-success">Submit Payment</button>
+  </form>
+
+
+<script>
+jQuery(function($) {
+  $('#payment-form').submit(function(event) {
+    var $form = $(this);
+
+    // Disable the submit button to prevent repeated clicks
+    $form.find('button').prop('disabled', true);
+
+    Stripe.card.createToken($form, stripeResponseHandler);
+
+    // Prevent the form from submitting with the default action
+    return false;
+  });
+});
+
+function stripeResponseHandler(status, response) {
+  var $form = $('#payment-form');
+
+  if (response.error) {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+  } else {
+    // response contains id and card, which contains additional card details
+    var token = response.id;
+    // Insert the token into the form so it gets submitted to the server
+    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    // and submit
+    $form.get(0).submit();
+  }
+};
+</script>

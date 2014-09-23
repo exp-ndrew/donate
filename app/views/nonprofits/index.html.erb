@@ -11,7 +11,7 @@
 <% @nonprofits.each do |nonprofit| %>
   <tr>
     <td><%= link_to nonprofit.name, nonprofit_path(nonprofit) %></td>
-    <td>$<%= nonprofit.donations.sum(:amount) %></td>
+    <td>$<%= sprintf('%.0f', nonprofit.donations.sum(:amount)) %></td>
     <td><%= link_to "Donate!", new_nonprofit_donation_path(nonprofit), :class => "btn btn-success" %></td>
   </tr>
 <% end %>
