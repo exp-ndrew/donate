@@ -3,6 +3,7 @@ class Donation < ActiveRecord::Base
   validates :amount, :presence => true
   validates :amount, :numericality => true
   before_create :define_name
+  # validate :card_validation
 
   def amount_format
     @counter = 6
@@ -14,6 +15,9 @@ class Donation < ActiveRecord::Base
     end
     amount.reverse!
   end
+
+
+
 
 private
   def define_name
